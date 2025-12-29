@@ -32,16 +32,20 @@ DISPLAY_COLOR = option_color["DARK_GREY"]
 
 class WindowConfig:
     def __init__(self) -> None:
-        while True:
+        self.running = True
+
+    def run(self):
+        while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+                    self.running = False
 
             GAME_SCREEN.fill(DISPLAY_COLOR)
             pygame.display.flip()
             GAME_CLOCK.tick(60)
 
+        pygame.quit()
+        sys.exit()
 
 
 WindowConfig()
